@@ -1,1 +1,1 @@
-# rest_api_basic_node_js
+# rest_api_cloudinary_node_js
