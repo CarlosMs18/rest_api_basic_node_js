@@ -8,7 +8,7 @@ const productSchema = Schema({
     },
 
     price :{
-        type : Double,
+        type : Number,
         default : 0.00
     },
 

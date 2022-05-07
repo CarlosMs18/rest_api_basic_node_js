@@ -4,7 +4,7 @@ const generarJWT = async(userId= '') => {
     const payload = {userId}
     try {
        const tokenGenerated=  jwt.sign(payload, process.env.SECRETORPRIVATEKEY,{
-            expiresIn : '3h'
+            expiresIn : '1h'
         })
 
         return tokenGenerated

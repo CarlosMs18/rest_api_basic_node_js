@@ -4,7 +4,10 @@ const {validationResult} = require('express-validator')
 const {generarJWT} = require('../helpers/generar_jwt')
 
 exports.signUp = async(req,res, next) => {
-    
+    const name = req.body.name
+    const email = req.body.email
+    const password = req.body.password
+    const confirmPassword = req.body.confirmPassword
     
     const errors = validationResult(req)
     if(!errors.isEmpty()){
@@ -17,11 +20,8 @@ exports.signUp = async(req,res, next) => {
       return
      
     }
-    const name = req.body.name
-    const email = req.body.email
-    const password = req.body.password
-    const confirmPassword = req.body.confirmPassword
- 
+   
+
     
     const userExist = await User.findOne({email})
    
@@ -30,6 +30,7 @@ exports.signUp = async(req,res, next) => {
         error.statusCode = 422
         error.data = 'El email ya se encuentra en uso'
         next(error)
+        return
       
     }
    
@@ -38,7 +39,7 @@ exports.signUp = async(req,res, next) => {
         error.statusCode = 422
         error.data = 'Las contraseñas no coinciden!'
         next(error)
-      
+        return
     }
     
    
