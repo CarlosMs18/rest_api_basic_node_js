@@ -1,15 +1,18 @@
 const jwt = require('jsonwebtoken')
-const generarJWT = (userId) => {
+const generarJWT = async(userId= '') => {
     
     const payload = {userId}
     try {
-        jwt.sign(payload, process.env.SECRETORPRIVATEKEY,{
+       const tokenGenerated=  jwt.sign(payload, process.env.SECRETORPRIVATEKEY,{
             expiresIn : '3h'
         })
+
+        return tokenGenerated
+
     } catch (error) {
         console.log(error)
     }
 }
 
 
-module.exports = generarJWT
+module.exports = {generarJWT}

@@ -5,6 +5,7 @@ const router = Router()
 
 
 router.post('/signup',
+   [
     check('name','El nombre del usuario no puede ir vacio!')
     .not().isEmpty(),
     check('email','Ingrese un Email Valido')
@@ -14,9 +15,8 @@ router.post('/signup',
     check('password','El password debe de tener un minimo de 6 caracteres y contener palabras y/o numeros')
     .isAlphanumeric()
     .isLength({min:6})
+   ],authController.signUp)
 
-,authController.signUp)
-
-router.get('/login',authController.login)
+router.post('/login',authController.login)
 
 module.exports = router
