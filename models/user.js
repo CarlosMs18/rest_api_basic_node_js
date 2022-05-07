@@ -30,7 +30,14 @@ const userSchema = Schema({
     status :{
         type : Boolean,
         default : true
-    }
+    },
+
+    products : [
+        {
+            type : Schema.Types.ObjectId,
+            ref : 'Product'
+        }
+    ]
 })
 
 module.exports = model('User',userSchema)
