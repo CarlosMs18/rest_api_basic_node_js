@@ -19,8 +19,8 @@ const userSchema = Schema({
 
     rol : {
         type : String,
-        default : 'USER_ROLE',
-        required : true
+        default : 'USER_ROLE'
+    
     },
 
     img : {

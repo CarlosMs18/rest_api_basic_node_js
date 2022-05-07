@@ -23,6 +23,7 @@
     "mongoose": "^6.3.2"
   },
   "devDependencies": {
+    "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.0",
     "jsonwebtoken": "^8.5.1",
