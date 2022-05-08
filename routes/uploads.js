@@ -5,8 +5,14 @@ const Router = require('express')
 const router = Router()
 
 
+/* router.put('/:coleccion/:id',isAuth, [
+    validarArchivo
+],uploadsController.updatedUpload) */
+
+
+
 router.put('/:coleccion/:id',isAuth, [
     validarArchivo
-],uploadsController.updatedUpload)
+],uploadsController.uplodasCloudinary)
 
 module.exports = router
