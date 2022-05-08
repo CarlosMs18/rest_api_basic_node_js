@@ -16,7 +16,9 @@ const productSchema = Schema({
         type : String,
         required : true
     },
-
+    img : {
+        type : String
+    },
     owner : {
         type : Schema.Types.ObjectId,
         ref : 'User',

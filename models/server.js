@@ -1,9 +1,11 @@
 const express = require('express')
 const authRoutes = require('../routes/auth')
 const productRoutes = require('../routes/product')
+const uploadRoutes = require('../routes/uploads')
 const cors = require('cors')
 const {conexionDB} = require('../config/connection_db')
 const bodyParser = require('body-parser')
+const fileUpload = require('express-fileupload')
 
 
 class Server{
@@ -14,7 +16,8 @@ class Server{
 
         this.path = {
             auth : '/api/auth/',
-            product : '/api/product/'
+            product : '/api/product/',
+            upload : '/api/uploads/'
         }
 
        
@@ -32,12 +35,19 @@ class Server{
     middlewares(){
         this.app.use(cors())
         this.app.use(bodyParser.json())
+        this.app.use(fileUpload({
+            useTempFiles : true,
+            tempFileDir : '/tmp/',
+            createParentPath : true
+
+        }))
        
     }
 
     routes(){
         this.app.use(this.path.auth, authRoutes)
         this.app.use(this.path.product,productRoutes)
+        this.app.use(this.path.upload, uploadRoutes)
     }
 
     error(){

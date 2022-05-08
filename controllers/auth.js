@@ -90,16 +90,21 @@ exports.login = async(req, res, next) => {
         }
 
         const token = await generarJWT(userExist._id)
+       
         res.status(200).json({
             userId : userExist._id,
             token
         })
-    } catch (error) {
+    } catch (err) {
+       
         if (!err.statusCode) {
             err.statusCode = 500;
           }
+          err.message = 'Server Internal Error'
+          next(err);   
           
-          next(err); 
+        return
+        
     }
     
 

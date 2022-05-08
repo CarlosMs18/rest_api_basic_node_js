@@ -137,6 +137,11 @@ exports.deleteProduct = async(req, res,next) => {
 
     try {
         await Product.findByIdAndRemove(productId)
+        const user = await User.findById(req.userId)
+       
+        user.products.pull(productId)
+        await user.save()
+    
         res.status(200).json({message : 'Product Eliminated Satisfactoriamente!'})
     } catch (error) {
         error.statusCode = 500
